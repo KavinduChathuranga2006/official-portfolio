@@ -60,9 +60,17 @@ header{
 }
 
 .hero-name{
-    font-size:3rem;
     font-weight:700;
     color:#ff0000;
+    line-height:1;
+    max-width:95%;
+    text-align:center;
+    margin:0 auto;
+    white-space: nowrap;        /* keep on one line */
+    /* don't ellipsize; scale responsively so full name fits on one line */
+    overflow: visible;
+    text-overflow: unset;
+    font-size: clamp(1.6rem, 6.5vw, 5rem);
 }
 
 .typing{
@@ -261,24 +269,82 @@ h2{
     border-radius:10px;
     max-width:500px;
     margin:auto;
+    text-align:left; /* make content align nicely */
 }
 
-.social-icons{
-    margin-top:20px;
+.contact-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between; /* space value and copy btn */
+    gap:15px;
+    background:#111;
+    padding:12px 16px;
+    margin:10px 0;
+    border-radius:10px;
+    transition: transform 0.3s, background 0.3s;
+}
+
+/* icon on left */
+.contact-item i{
+    color:#ff0000;
+    font-size:1.4rem;
+    flex:0 0 36px;
+}
+
+/* details stack */
+.contact-details{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    flex:1 1 auto;
+    min-width:0; /* allow ellipsis */
+}
+
+.contact-label{
+    color:#aaa;
+    font-size:0.85rem;
+}
+
+.contact-value{
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:1rem;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+/* copy button */
+.copy-btn{
+    background:transparent;
+    border:1px solid rgba(255,0,0,0.12);
+    color:#ff0000;
+    padding:8px;
+    border-radius:8px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+}
+.copy-btn i{ font-size:1rem; }
+.copy-btn:hover{
+    background:rgba(255,0,0,0.06);
+}
+
+/* small feedback when copied (we toggle .copied) */
+.copy-btn.copied{
+    background:#ffffff;
+    color:#fff;
+    border-color:#ff0000;
+}
+
+/* ensure social-icons remain centered below items */
+.contact-box .social-icons{
+    margin-top:18px;
     display:flex;
     justify-content:center;
-    flex-wrap:wrap;
-}
-
-.social-icons a{
-    color:#ff0000;
-    margin:10px;
-    font-size:1.6rem;
-    transition:.2s;
-}
-
-.social-icons a:hover{
-    transform:scale(1.2);
 }
 
 /* ============ FOOTER ============ */
@@ -311,7 +377,7 @@ footer{
     }
 
     .nav-links a{
-        font-size:1.5rem;
+        font-size:1.6rem;
         color:#ff0000;
         font-weight:600;
         text-decoration:none;
@@ -353,7 +419,8 @@ footer{
 		padding: 30px 10px;
 	}
 	.hero-name {
-		font-size: 2.4rem;
+		/* slightly smaller cap on medium screens */
+		font-size: clamp(1.6rem, 7.5vw, 4rem);
 	}
 	.typing {
 		font-size: 1.1rem;
@@ -374,7 +441,10 @@ footer{
 		height:60vh;
 		padding:20px 12px;
 	}
-	.hero-name{font-size:1.8rem;}
+	.hero-name{
+        line-height:1.05;
+		font-size: clamp(1.2rem, 8vw, 2rem); /* ensure it fits on very small phones */
+    }
 	.typing{font-size:1rem;height:30px;}
 
 	/* Make nav overlay items more comfortable to tap */
