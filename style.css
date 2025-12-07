@@ -341,91 +341,124 @@ footer{
     }
 }
 
-/* Stylish Contact Info */
-.contact-box{
-    background:#1a1a1a;
-    padding:40px 30px;
-    border-radius:15px;
-    max-width:500px;
-    margin:auto;
-    text-align:center;
+/* ====== Responsive refinements ====== */
+
+/* Reduce base font-size for small screens and make spacing more compact */
+@media (max-width:900px) {
+	:root {
+		font-size: 14px;
+	}
+	header {
+		height: 70vh;
+		padding: 30px 10px;
+	}
+	.hero-name {
+		font-size: 2.4rem;
+	}
+	.typing {
+		font-size: 1.1rem;
+		height: 34px;
+	}
+	section {
+		padding: 30px 16px;
+	}
+	.nav-left{
+		font-size:1.25rem;
+	}
 }
 
-.contact-item{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:15px;
-    background:#111;
-    padding:15px 20px;
-    margin:10px 0;
-    border-radius:10px;
-    transition: transform 0.3s, background 0.3s;
+/* Mobile-specific improvements */
+@media (max-width:600px){
+	/* Slightly smaller hero on very small screens */
+	header{
+		height:60vh;
+		padding:20px 12px;
+	}
+	.hero-name{font-size:1.8rem;}
+	.typing{font-size:1rem;height:30px;}
+
+	/* Make nav overlay items more comfortable to tap */
+	.nav-links a{
+		font-size:1.6rem;
+		padding:8px 12px;
+	}
+
+	/* Make hero buttons full width and stacked */
+	.hero-buttons{
+		width:100%;
+		padding:0 24px;
+	}
+	.btn-projects, .btn-contact{
+		width:100%;
+		max-width:380px;
+		padding:12px 18px;
+	}
+
+	/* Projects images responsive limitations */
+	.project-card img{
+		max-height:200px;
+		object-fit:cover;
+	}
+
+	/* Slightly reduce service item padding on small screens */
+	.service-item{
+		padding:16px;
+	}
+
+	/* Ensure contact box fits well */
+	.contact-box{
+		padding:24px;
+	}
 }
 
-.contact-item i{
+/* Improve nav-toggle visibility and spacing */
+.menu-toggle{
+	background:transparent;
+	border-radius:6px;
+	padding:6px 8px;
+}
+
+/* Make overlay appear with fade + slide for smoother mobile UX */
+.nav-links{
+	transition: left 0.35s ease, opacity 0.25s ease;
+	opacity:0;
+}
+.nav-links.active{
+	left:0;
+	opacity:1;
+}
+
+/* Improve progress label positioning on very small screens */
+@media (max-width:420px){
+	.progress::after{
+		right:8px;
+		font-size:0.85rem;
+		top:-22px;
+	}
+}
+
+/* Close button styles for mobile menu */
+.menu-close{
+    display:none;
+    position:absolute;
+    top:18px;
+    right:18px;
+    background:transparent;
+    border:none;
     color:#ff0000;
-    font-size:1.5rem;
-}
-
-.contact-item a{
-    color:#fff;
-    text-decoration:none;
-    font-weight:600;
-    font-size:1rem;
-}
-
-.contact-item:hover{
-    transform: translateY(-5px);
-    background:#222;
-}
-
-/* Social icons below */
-.social-icons{
-    margin-top:25px;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-}
-
-.social-icons a{
-    color:#ff0000;
-    margin:10px;
     font-size:1.6rem;
-    transition:.2s;
+    padding:8px;
+    cursor:pointer;
+    z-index:1001;
 }
 
-.social-icons a:hover{
-    transform:scale(1.2);
-    color:#fff;
-}
+/* show close button when nav overlay is active on mobile */
+@media (max-width:600px){
+    .nav-links .menu-close { display:none; } /* default hidden while nav is closed */
+    .nav-links.active .menu-close { display:block; } /* visible when overlay open */
 
-/* Skill bar container */
-.progress {
-    background: #1a1a1a;
-    height: 20px;
-    border-radius: 5px;
-    overflow: visible; /* allow ::after to show outside */
-    position: relative;
-}
-
-/* Filled part of the bar */
-.progress div {
-    width: 0;
-    height: 100%;
-    background: #ff0000;
-    transition: width 2s;
-}
-
-/* Percentage text above the bar on the right */
-.progress::after {
-    content: attr(data-percent);
-    position: absolute;
-    top: -25px;  /* above the bar */
-    right: 0;    /* right side */
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.9rem;
+    /* slightly enlarge the close hit area for tap */
+    .nav-links .menu-close i{ font-size:1.6rem; }
 }
 
 
