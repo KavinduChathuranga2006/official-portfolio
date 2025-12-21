@@ -22,6 +22,12 @@ nav{
     font-size:1.6rem;
     font-weight:700;
     color:#ff0000;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.nav-left:hover{
+    color:#fff;
 }
 
 .menu-toggle{
@@ -491,13 +497,15 @@ footer{
 }
 
 /* Make overlay appear with fade + slide for smoother mobile UX */
-.nav-links{
-	transition: left 0.35s ease, opacity 0.25s ease;
-	opacity:0;
-}
-.nav-links.active{
-	left:0;
-	opacity:1;
+@media (max-width:600px){
+	.nav-links{
+		transition: left 0.35s ease, opacity 0.25s ease;
+		opacity:0;
+	}
+	.nav-links.active{
+		left:0;
+		opacity:1;
+	}
 }
 
 /* Improve progress label positioning on very small screens */
